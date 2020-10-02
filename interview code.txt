@@ -1,0 +1,126 @@
+<?php
+/*
++------------------------------------------------------------------------------------------------------------------------------
+| Thanks for taking the time to finish up the Multiple Location Ivnentory coding test.  
+| Below are what we have from the interview.  It's your chocie to continue to work on that or rewrite it in different way.
+|
+| Requirements
+| * You can write this module in any framework of your choice
+| * This doesn't need to be a fully working module
+| * Your code need to follow SOLID design principles
+| * Fulfill the features of the following - Where should logic sits for each feature?
+|       * Get quantity of a given sku at a specific warehouse
+|       * Get quantity of a given sku at all warehouses
+|       * Update quantity of a given sku at a specific warehouse
+|       * Stock import. It should support CSV file or API
+|  * Consider our feedbacks from the interview when building this
+|  * Provide a short summary why you write it in the way that you did
+|  * Describe any improvement that you can think of
+|  * Describe the downside of your implmentation
+| 
++------------------------------------------------------------------------------------------------------------------------------
+
+
+Design a system that supports multiple locations inventory for products.
+For example,  
+Product A has 10 units at warehouse W1 and 22 units at warehouse W2. 
+
+The base tables are provided as below. You can modify them or add new tables.
+
+product
+- id
+- name
+- sku
+- created_at
+- updated_at
+
+warehouse
+- id
+- name
+- location
+- updated_at
+- created_at
+
+warehouse_product
+- warehouse_id
+- product_id
+- quantity
+*/
+
+class Inventory
+{
+  
+  public function getInventory($warehouse = null) {
+    if (is_null($warehouse)) {
+      //assume all warehouses
+    }
+    
+    //we have a warehouse specified
+    // \ProductInventory::where('
+
+    return $result;
+  }
+
+
+  public function updateInventory($warehouseId, $productId, $quantity){
+    
+  }  
+}
+
+class InventoryImporter {
+  public function parseInfomation($data);
+  
+  public function updateInventory();
+}
+/*
+CSV Schema
+- warehouseName
+- productSku
+- quantity
+*/
+class CSVImporter extends InventoryImporter {
+  public function parseInformation($data){
+    $rowSplit = explode("\n", $data);
+    
+    $inventory = [];
+    foreach($rowSplit as $row) {
+      $rowData = explode(",", $rowSplit);
+      $inventory[] = $rowData;
+    }
+    
+    return $inventory;
+  }
+  public function updateInventory() {
+    
+  }
+  
+  public function parseFiles($files){
+    
+    $inventory = [];
+    foreach($files as $file) {
+      $inventory[] = $this->parseInformation($file);
+    }
+    
+    
+    //updateInventory
+  }
+}
+
+class APIImporter extends InventoryImporter {
+  public function parseInformation($data){
+  
+  }
+  public function updateInventory() {
+  
+  }
+}
+
+
+class Cron {
+  public function execute() {
+    $files = Storage('csv')::all();
+    
+    $csv = new CSVImporter();
+    $csv->parseFiles($files);
+  }
+}
